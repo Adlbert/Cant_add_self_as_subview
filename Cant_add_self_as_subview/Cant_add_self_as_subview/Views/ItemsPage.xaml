@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Cant_add_self_as_subview.Views.ItemsPage"
+             Title="{Binding Title}"
+             x:Name="BrowseItemsPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
+        <ListView x:Name="ItemsCollectionView"
+                  RowHeight="-1"
+                  HasUnevenRows="True"
+                ItemsSource="{Binding Items}">
+            <!--<d:CollectionView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>First Item</x:String>
+                    <x:String>Second Item</x:String>
+                    <x:String>Third Item</x:String>
+                    <x:String>Fourth Item</x:String>
+                    <x:String>Fifth Item</x:String>
+                    <x:String>Sixth Item</x:String>
+                </x:Array>
+            </d:CollectionView.ItemsSource>-->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid
+                                    RowSpacing="2"
+                                    ColumnSpacing="2"
+                                    Padding="0"
+                                    Margin="0,3,0,3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                            Height="*" />
+                                <RowDefinition
+                                            Height="*" />
+
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                            Width="64" />
+                                <ColumnDefinition
+                                            Width="Auto" />
+                                <ColumnDefinition
+                                            Width="*" />
+                                <ColumnDefinition
+                                            Width="24" />
+                                <ColumnDefinition
+                                            Width="32" />
+
+                            </Grid.ColumnDefinitions>
+                            <Frame
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Grid.ColumnSpan="5"
+                                        Padding="2"
+                                        BackgroundColor="White"
+                                        CornerRadius="5" />
+
+
+
+                            <Frame
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Padding="2"
+                                        IsClippedToBounds="True"
+                                        BackgroundColor="White"
+                                        CornerRadius="15"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        Margin="3,2,2,2">
+                                <Image
+                                            Source="https://upload.wikimedia.org/wikipedia/commons/9/93/No-logo.svg"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center" />
+                            </Frame>
+                            <Label
+                                        Text="{Binding Text}"
+                                        Grid.Column="1"
+                                        Grid.Row="0"
+                                        Grid.ColumnSpan="3"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        VerticalOptions="FillAndExpand"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Start"
+                                        VerticalTextAlignment="Center"
+                                        Margin="3,6,5,0" />
+                            <Label
+                                        Text="{Binding Description}"
+                                        TextColor="DarkGray"
+                                        Grid.Column="1"
+                                        Grid.Row="1"
+                                        Grid.ColumnSpan="3"
+                                        FontAttributes="None"
+                                        FontSize="10"
+                                        VerticalOptions="FillAndExpand"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="Start"
+                                        VerticalTextAlignment="Center"
+                                        Margin="3,0,5,6" />
+                            <Image
+                                        Grid.Column="3"
+                                        Grid.RowSpan="2"
+                                        Source="MenuBtnDelivery.png"
+                                        Margin="0,0,0,0"
+                                        WidthRequest="16"
+                                        IsVisible="True"
+                                        HeightRequest="16" />
+                            <ImageButton
+                                        x:Name="lvDetayButton"
+                                        Source="https://png.pngtree.com/png-vector/20190120/ourmid/pngtree-info-vector-icon-png-image_470297.jpg"
+                                        Grid.Column="4"
+                                        Grid.RowSpan="2"
+                                        Margin="3,0,2,0"
+                                        WidthRequest="24"
+                                        HeightRequest="24"
+                                        Clicked="lvDetayButton_Clicked"
+                                        BackgroundColor="Transparent"
+                                        CommandParameter="{Binding Id}"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalOptions="CenterAndExpand"
+                                        Padding="3" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </RefreshView>
+</ContentPage>
